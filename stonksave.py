@@ -91,7 +91,7 @@ def removeStock(list):
 def getall():
     out = []
     
-    for n in watchlistArray.keys()
+    for n in watchlistArray.keys():
         out.append(str(n)+": ")
         out.append(watclistArray[n])
         out.append("\n")
