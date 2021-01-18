@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import stock
-client = commands.Bot(command_prefix=".")
+client = commands.Bot(command_prefix="$")
 token = os.getenv("DISCORD_BOT_TOKEN")
 
 @client.event
