@@ -17,7 +17,7 @@ async def stonk(ctx, *args) :
     for i in range(len(args)):
         stocklist.append(args[i])
     outlist = runStonks(stocklist)
-
+    await ctx.send(outlist)
     await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 
 
