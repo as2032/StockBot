@@ -1,4 +1,14 @@
 discord.py
-pandas.py
-mplfinance.py
-yfinance.py
+pandas
+mplfinance
+yfinance
+pandas
+bs4
+os
+pickle
+requests
+datetime
+yfinance
+pandas_datareader.data
+matplotlib
+numpy
