@@ -29,13 +29,16 @@ def getList(name):
         n = i
         break
     wl = watchlistArray.get(n)
-    out = str(name) + "watchlist: " + str(wl)
+    out = str(n) + "watchlist: " + str(wl)
     return out
 
 
 
 def runList(name):
-    wl = watchlistArray.get(name)
+    for i in name:
+        n = i
+        break
+    wl = watchlistArray.get(n)
     out = stock.runStonks(wl)
 
     return out
