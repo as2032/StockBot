@@ -26,7 +26,7 @@ def saveStonk(watchlist):
 
 def getList(name):
     for i in name:
-        n = name
+        n = i
         break
     wl = watchlistArray.get(n)
     out = str(name) + "watchlist: " + str(wl)
@@ -61,7 +61,7 @@ def runListd(arg):
 
 def removeList(name):
     for i in name:
-        n = name
+        n = i
         break
     del watchlistArray[n]
     out  = "Removed stocks from "+ str(n) + " watchlist"
