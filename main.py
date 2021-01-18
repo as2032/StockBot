@@ -58,11 +58,11 @@ async def stonklistrund(ctx, *args) :
     out = stonksave.runListd(args)
     await ctx.send(out)
 
-@client.command(name = "$rm")
+@client.command(name = "$rma")
 async def stonklistremove(ctx, *args) :
     out = stonksave.removeList(args)
     await ctx.send(out)
-@client.command(name = "$rma")
+@client.command(name = "$rm")
 async def stonklistremovestock(ctx, *args) :
     out = stonksave.removeStock(args)
     await ctx.send(out)
