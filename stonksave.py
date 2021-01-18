@@ -29,7 +29,7 @@ def getList(name):
         n = i
         break
     wl = watchlistArray.get(n)
-    out = str(n) + "watchlist: " + str(wl)
+    out = str(n) + " watchlist: " + str(wl)
     return out
 
 
@@ -67,6 +67,23 @@ def removeList(name):
         n = i
         break
     del watchlistArray[n]
-    out  = "Removed stocks from "+ str(n) + " watchlist"
+    out  = "Removed all stocks from "+ str(n) + " watchlist"
+
+    return out
+
+def removeStock(list):
+    i = 0
+    toRem = []
+    for i in list:
+        if(i==0):
+            n = i
+            i = 1
+        else:
+            toRem.append(i)
+    wl = watchlistArray[n]
+    for tick in toRem:
+        wl.remove(tick)
+
+    out  = "Removed "+ str(toRem) +" from "+ str(n) + " watchlist"
 
     return out
