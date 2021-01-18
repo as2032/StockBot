@@ -16,13 +16,13 @@ def saveStonk(watchlist):
             templist.append(tick)
 
     watchlistArray[name] = templist
-    out = "Added " + templist + " to "+ name +" watchlist."
+    out = "Added " + str(templist) + " to "+ str(name) +" watchlist."
     return out
 
 
 def getList(name):
     wl = watchlistArray.get(name)
-    out = name + "watchlist: " +wl
+    out = str(name) + "watchlist: " + str(wl)
     return out
 
 
@@ -54,7 +54,7 @@ def runListd(arg):
 
 def removeList(name):
 
-    watchlistArray.remove(name)
-    out  = "Removed "+name+ " watchlist"
+    watchlistArray[name] = []
+    out  = "Removed stocks from "+ str(name) + " watchlist"
 
     return out
