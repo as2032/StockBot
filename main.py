@@ -3,6 +3,7 @@ from discord.ext import commands
 import os
 import stock
 import stock2
+import stonksave
 client = commands.Bot(command_prefix="$")
 token = os.getenv("DISCORD_BOT_TOKEN")
 
@@ -30,12 +31,32 @@ async def stonk(ctx, *args) :
     out = stock.runStonks(args)
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
-@client.command(name = "$2")
+@client.command(name = "$d")
 async def stonk2(ctx, *args) :
     out = stock2.runStonks(args)
 
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
+@client.command(name = "$save")
+async def stonksave(ctx, *args) :
+    out = stonksave.saveStonk(args)
+    await ctx.send(out)
+
+@client.command(name = "$run")
+async def stonksave(ctx, *args) :
+    out = stonksave.runList(args)
+    await ctx.send(out)
+
+
+@client.command(name = "$rund")
+async def stonksave(ctx, *args) :
+    out = stonksave.runListd(args)
+    await ctx.send(out)
+
+@client.command(name = "$rm")
+async def stonksave(ctx, *args) :
+    out = stonksave.removeList(args)
+    await ctx.send(out)
 
 @client.command(name="whoami")
 async def whoami(ctx) :
