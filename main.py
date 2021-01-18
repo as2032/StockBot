@@ -4,6 +4,7 @@ import os
 import stock
 import stock2
 import stonksave
+
 client = commands.Bot(command_prefix="$")
 token = os.getenv("DISCORD_BOT_TOKEN")
 
@@ -38,23 +39,23 @@ async def stonk2(ctx, *args) :
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 @client.command(name = "$save")
-async def stonksave(ctx, *args) :
+async def stonksavelist(ctx, *args) :
     out = stonksave.saveStonk(args)
     await ctx.send(out)
 
 @client.command(name = "$run")
-async def stonksave(ctx, *args) :
+async def stonkslistrun(ctx, *args) :
     out = stonksave.runList(args)
     await ctx.send(out)
 
 
 @client.command(name = "$rund")
-async def stonksave(ctx, *args) :
+async def stonklistrund(ctx, *args) :
     out = stonksave.runListd(args)
     await ctx.send(out)
 
 @client.command(name = "$rm")
-async def stonksave(ctx, *args) :
+async def stonklistremove(ctx, *args) :
     out = stonksave.removeList(args)
     await ctx.send(out)
 
