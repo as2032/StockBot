@@ -75,7 +75,7 @@ def removeStock(list):
     j = 0
     toRem = []
     for i in list:
-        if(i==0):
+        if(j==0):
             n = i
             j = 1
         else:
