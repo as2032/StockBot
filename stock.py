@@ -120,10 +120,10 @@ def make_data(ticker_watch_list, start_date, end_date):
             allStockDf[ticker]=web.data.DataReader(ticker, 'yahoo', start_date, end_date)
         except:
             print(ticker + " is not a Valid Stock Ticker")
-    for df in allStockDf: 
+    for stock in ticker_watch_list: 
         # Adding moving averages to the dataframe
         #stock_df = pd.read_csv('stock_csvs/' + stock + '.csv', parse_dates=True, index_col=0)
-        stock_df = df
+        stock_df = allStockDf[stock]
         stock_df['MA-4'] = stock_df['Adj Close'].rolling(window=4, min_periods=0).mean()
         stock_df['MA-10'] = stock_df['Adj Close'].rolling(window=10, min_periods=0).mean()
         stock_df['MA-30'] = stock_df['Adj Close'].rolling(window=30, min_periods=0).mean()
