@@ -30,7 +30,7 @@ async def stonk(ctx, *args) :
     out = stock.runStonks(args)
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
-@client.command(name = "$")
+@client.command(name = "$2")
 async def stonk2(ctx, *args) :
     out = stock2.runStonks(args)
 
