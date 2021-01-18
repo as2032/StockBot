@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import stock
-client = commands.Bot(command_prefix=".")
+client = commands.Bot(command_prefix="$")
 token = os.getenv("DISCORD_BOT_TOKEN")
 
 @client.event
@@ -23,8 +23,8 @@ async def on_ready() :
 
 
 
-@client.command(name="stonk")
-async def stonk(ctx, *args) :
+@client.command(name="stock")
+async def stock(ctx, *args) :
     out = stock.runStonks(args)
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
