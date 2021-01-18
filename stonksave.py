@@ -9,7 +9,7 @@ def saveStonk(watchlist):
     for tick in watchlist:
         if(i == 0):
             if(tick not in watchlistArray):
-                watchlistArray[tick] = tick
+                watchlistArray[tick] = []
                 name = tick
                 i= i+1
         else:
