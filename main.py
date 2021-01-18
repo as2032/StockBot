@@ -48,6 +48,10 @@ async def stonkslistrun(ctx, *args) :
     out = stonksave.runList(args)
     await ctx.send(out)
 
+@client.command(name = "$get")
+async def stonksgetlist(ctx, *args) :
+    out = stonksave.getList(args)
+    await ctx.send(out)
 
 @client.command(name = "$rund")
 async def stonklistrund(ctx, *args) :
