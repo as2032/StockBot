@@ -262,7 +262,7 @@ def run_daily(tickers, date):
             res = 'Sell: ' + ticker
             output.append(res)
         if action == 0:
-            res = 'Buy: ' + ticker
+            res = 'Hold: ' + ticker
             output.append(res)
 
 
