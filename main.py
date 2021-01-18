@@ -13,20 +13,20 @@ async def on_ready() :
 
 
 
-class run(args):
-    print("im here")
-    stocklist = []
-    for i in range(len(args)):
-        stocklist.append(args[i])
-    outlist = runStonks(stocklist)
-    return outlist
+# class run(args):
+#     print("im here")
+#     stocklist = []
+#     for i in range(len(args)):
+#         stocklist.append(args[i])
+#     outlist = runStonks(stocklist)
+#     return outlist
 
 
 
 @client.command(name="stonk")
-async def stonk(ctx, *, reason: run()) :
-    
-    await ctx.send(reason)
+async def stonk(ctx, *args) :
+    runStonks(args)
+    await ctx.send("done")
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 
 
@@ -379,7 +379,7 @@ def runStonks(watchlist):
 
     output = run_daily(ticker_watch_list, curDate)
 
-    return output
+    print(output)
 
 
 
