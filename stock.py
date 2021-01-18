@@ -8,6 +8,7 @@ import yfinance as finance
 import matplotlib
 from matplotlib import style
 import numpy as np
+import pandas_datareader as web
 from collections import Counter
 
 
@@ -106,7 +107,7 @@ import matplotlib.ticker as mticker
 import datetime as datetime
 import numpy as np
 import mplfinance as mpf
-
+import pandas_datareader as web
 
 moving_averages = [4, 10, 30]
 
@@ -116,7 +117,7 @@ def make_data(ticker_watch_list, start_date, end_date):
 
     for ticker in ticker_watch_list:
         try:
-            allStockDf[ticker]=web.DataReader(ticker, 'yahoo', start_date, end_date)
+            allStockDf[ticker]=web.data.DataReader(ticker, 'yahoo', start_date, end_date)
         except:
             print(ticker + " is not a Valid Stock Ticker")
     for df in allStockDf: 
