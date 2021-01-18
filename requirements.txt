@@ -1,1 +1,4 @@
 discord.py
+pandas.py
+mplfinance.py
+yfinance.py
