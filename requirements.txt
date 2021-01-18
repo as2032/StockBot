@@ -9,3 +9,4 @@ datetime
 yfinance
 matplotlib
 numpy
+pandas_datareader
