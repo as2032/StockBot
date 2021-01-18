@@ -92,9 +92,6 @@ def getall():
     out = []
     
     for n in watchlistArray.keys():
-        out.append(str(n)+": ")
-        out.append(watchlistArray.get(n))
-        out.append("\n")
-    
-
+        out.append(str(n)+": "+watchlistArray.get(n)+"|| ")
+        
     return out
