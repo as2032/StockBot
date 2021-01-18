@@ -315,7 +315,7 @@ def runStonks(watchlist):
 
     output = run_daily(ticker_watch_list, curDate)
 
-    print(output)
+    return output
 
 
 
