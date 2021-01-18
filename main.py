@@ -52,7 +52,10 @@ async def stonkslistrun(ctx, *args) :
 async def stonksgetlist(ctx, *args) :
     out = stonksave.getList(args)
     await ctx.send(out)
-
+@client.command(name = "$getall")
+async def stonksgetall(ctx, *args) :
+    out = stonksave.getall()
+    await ctx.send(out)
 @client.command(name = "$rund")
 async def stonklistrund(ctx, *args) :
     out = stonksave.runListd(args)
