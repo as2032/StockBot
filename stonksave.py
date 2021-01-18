@@ -86,3 +86,15 @@ def removeStock(list):
     out  = "Removed "+ str(toRem) +" from "+ str(n) + " watchlist"
 
     return out
+
+
+def getall():
+    out = []
+    
+    for n in watchlistArray.keys()
+        out.append(str(n)+": ")
+        out.append(watclistArray[n])
+        out.append("\n")
+    
+
+    return out
