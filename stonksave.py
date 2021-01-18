@@ -14,7 +14,6 @@ def saveStonk(watchlist):
 
                 i= i+1
             else:
-                templist.append(tick)
                 i = i+1
         else:
             templist.append(tick)
