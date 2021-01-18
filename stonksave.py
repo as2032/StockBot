@@ -13,7 +13,7 @@ def saveStonk(watchlist):
                 watchlistArray[name] = []
 
                 i= i+1
-            if name in watchlistArray:
+            else:
                 templist.append(tick)
                 i = i+1
         else:
