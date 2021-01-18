@@ -10,14 +10,23 @@ async def on_ready() :
     await client.change_presence(status = discord.Status.idle, activity = discord.Game("Listening to .help"))
     print("I am online")
 
-@client.command(name="stonk")
-async def stonk(ctx, *args) :
-    await ctx.say("im here")
+
+
+
+class run(args):
+    print("im here")
     stocklist = []
     for i in range(len(args)):
         stocklist.append(args[i])
     outlist = runStonks(stocklist)
-    await ctx.send(outlist)
+    return outlist
+
+
+
+@client.command(name="stonk")
+async def stonk(ctx, *, reason: run()) :
+    
+    await ctx.send(reason)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 
 
