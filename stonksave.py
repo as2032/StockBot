@@ -72,12 +72,12 @@ def removeList(name):
     return out
 
 def removeStock(list):
-    i = 0
+    j = 0
     toRem = []
     for i in list:
         if(i==0):
             n = i
-            i = 1
+            j = 1
         else:
             toRem.append(i)
     wl = watchlistArray[n]
