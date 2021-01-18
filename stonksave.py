@@ -54,7 +54,7 @@ def runListd(arg):
 
 def removeList(name):
 
-    watchlistArray[name] = []
+    watchlistArray[name].remove(watchlistArray[name][])
     out  = "Removed stocks from "+ str(name) + " watchlist"
 
     return out
