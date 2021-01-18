@@ -20,7 +20,10 @@ def saveStonk(watchlist):
     return out
 
 
-
+def getList(name):
+    wl = watchlistArray.get(name)
+    out = name + "watchlist: " +wl
+    return out
 
 
 
