@@ -59,23 +59,21 @@ import numpy as np
 
 #ticker_watch_list = ['AAPL', 'TSLA', 'AMZN', 'MU', 'TSM', 'PFE', 'QQQJ', 'MJ', 'XL', 'SQQQ', 'TQQQ', 'DDOG', 'XOM']
 #pass list of stocks you want to find then loop through it 
-def get_data(ticker, start_date, end_date):
-    if not os.path.exists('stock_csvs'):
-        os.makedirs('stock_csvs')
+# def get_data(ticker, start_date, end_date):
+#     if not os.path.exists('stock_csvs'):
+#         os.makedirs('stock_csvs')
     
-    start = start_date
-    end = end_date
-
-
-
-    try:
-    #for ticker in tickers
-        df = web.DataReader(ticker, 'yahoo', start, end)
-        df.to_csv('stock_csvs/{}.csv'.format(ticker))
-        return 0
-    except:
-        print(ticker + " is not a Valid Stock Ticker")
-        return 1
+#     start = start_date
+#     end = end_date
+    
+#     try:
+#     #for ticker in tickers
+#         df = web.DataReader(ticker, 'yahoo', start, end)
+#         df.to_csv('stock_csvs/{}.csv'.format(ticker))
+#         return 0
+#     except:
+#         print(ticker + " is not a Valid Stock Ticker")
+#         return 1
 
 
 #Works for all date combos including future and weekends.
@@ -121,11 +119,18 @@ from IPython.display import Image
 moving_averages = [4, 10, 30]
 
 every_stock = {}
-def make_data(ticker_watch_list):
+def make_data(ticker_watch_list, start_date, end_date):
+    allStockDf = {}
 
-    for stock in ticker_watch_list: 
+    for ticker in ticker_watch_list:
+        try:
+            allStockDf[ticker]=web.DataReader(ticker, 'yahoo', start_date, end_date)
+        except:
+            print(ticker + " is not a Valid Stock Ticker")
+    for df in allStockDf: 
         # Adding moving averages to the dataframe
-        stock_df = pd.read_csv('stock_csvs/' + stock + '.csv', parse_dates=True, index_col=0)
+        #stock_df = pd.read_csv('stock_csvs/' + stock + '.csv', parse_dates=True, index_col=0)
+        stock_df = df
         stock_df['MA-4'] = stock_df['Adj Close'].rolling(window=4, min_periods=0).mean()
         stock_df['MA-10'] = stock_df['Adj Close'].rolling(window=10, min_periods=0).mean()
         stock_df['MA-30'] = stock_df['Adj Close'].rolling(window=30, min_periods=0).mean()
@@ -311,11 +316,9 @@ def runStonks(watchlist):
 
     
     for tick in watchlist:
-        res = get_data(tick, StartDate, curDate)
-        if(res==0):
-            ticker_watch_list.append(tick)
+        ticker_watch_list.append(tick)
     
-    make_data(ticker_watch_list)
+    make_data(ticker_watch_list, StartDate, curDate)
 
     output = run_daily(ticker_watch_list, curDate)
 
