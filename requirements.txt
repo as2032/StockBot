@@ -4,7 +4,6 @@ mplfinance
 yfinance
 pandas
 bs4
-pickle
 requests
 datetime
 yfinance
