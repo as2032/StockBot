@@ -12,7 +12,15 @@ async def on_ready() :
 
 @client.command()
 async def stonk(ctx, *args) :
-    await ctx.send('{} stocks: {}'.format(len(args), ', '.join(args)))
+
+    stocklist = []
+    for i in range(len(args)):
+        stocklist.append(args[i])
+    outlist = runStonks(stocklist)
+
+    await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
+
+
 
 
 
@@ -291,21 +299,27 @@ def buy_sell(stock, date):
         return 0
 # %%
 def run_daily(tickers, date):
-
+    output = []
     dayno = date.weekday()
     if(dayno==5):
         date = date + dt.timedelta(days = -1)
     if(dayno==6):
         date = date + dt.timedelta(days = -2)
-    print("As of Market Close On: " + date.strftime("%B %d, %Y"))
+    output.append("As of Market Close On: " + date.strftime("%B %d, %Y"))
     for ticker in tickers:
         action = buy_sell(ticker, date)
         if action == 2:
-            print('Buy: ' + ticker)
+            res = 'Buy: ' + ticker
+            output.append(res)
         if action == 1:
-            print('Sell: ' + ticker)
+            res = 'Sell: ' + ticker
+            output.append(res)
         if action == 0:
-            print('Hold: ' + ticker)
+            res = 'Buy: ' + ticker
+            output.append(res)
+
+
+    return output
 # %%
 #date = '2021-1-6 00:00:00'
 #print('On ' + str(date))
@@ -315,19 +329,6 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def show_chart(ticker):
-    ap0 = [ 
-        mpf.make_addplot(every_stock[ticker]['Upper Band'],color='grey'),  
-        mpf.make_addplot(every_stock[ticker]['Lower Band'],color='grey'),  
-        mpf.make_addplot(every_stock[ticker]['MA-4'],color='red'),
-        mpf.make_addplot(every_stock[ticker]['MA-10'],color='green'),
-        mpf.make_addplot(every_stock[ticker]['MA-30'],color='blue'),
-        mpf.make_addplot(every_stock[ticker]['Fast Stochastic'],color='r',panel=2),  
-        mpf.make_addplot(every_stock[ticker]['Slow Stochastic'],color='b',panel=2),
-        mpf.make_addplot(every_stock[ticker]['Green Dot?'],type='scatter', color='g', markersize=5)  
-      ]
-      
-    mpf.plot(every_stock[ticker],title=ticker,type='candle', style='charles',volume=True,addplot=ap0,scale_width_adjustment=dict(ohlc=2.0,lines=0.4))
 
 
 # def appendToWatch(ticker):
@@ -346,8 +347,8 @@ def show_chart(ticker):
     
 
 
-def main():
-
+def runStonks(watchlist):
+    
     import datetime as dt
     from datetime import datetime
     ticker_watch_list = []
@@ -356,53 +357,64 @@ def main():
     StartDate = curDate - dt.timedelta(days=365)
     if(datetime.now().strftime("%d/%m/%Y %H:%M:%S")<datetime.now().strftime("%d/%m/%Y 09:30:00")):
         curDate = curDate + dt.timedelta(days = -1)
-    txt_bool = input("Use Text File as Watchlist> (Y/N): ")
-    if(txt_bool=='Y' or txt_bool == 'y'):
-        file_name = input("Enter Text File: ")
-        with open(file_name) as f:
-            watch = f.read().splitlines()
-        #watch = open("watchlist.txt", 'r')
-        #Lines = watch.readlines()
-        for line in watch:
-           
-            #line.rstrip()
-            if(len(line)>=1):
-                res = get_data(line, StartDate, curDate)
-                if(res==0):
-                    ticker_watch_list.append(line)
-            else:
-                break
-    else:
-        print("Enter Stocks to Track (Enter 0 to Stop):")
-        while True:
-            inp = input("Enter Ticker: ")
-            if(inp=='0'):
-                print("Current watch list: "+ str(ticker_watch_list))
-                break
-            else:
-                res = get_data(inp, StartDate, curDate)
-                if(res==0):
-                    ticker_watch_list.append(inp)
+   
 
-    #get_data(ticker_watch_list, StartDate, curDate)
+
+    
+    for tick in watchlist:
+        res = get_data(tick, StartDate, curDate)
+        if(res==0):
+            ticker_watch_list.append(tick)
+    
     make_data(ticker_watch_list)
-    print("After running indicators (RWB, Green Dot):")
 
-    run_daily(ticker_watch_list, curDate)
-    chart_bool = input("Show all charts? (Y/N): ")
-    if(chart_bool=='Y' or chart_bool == 'y'):
-        for tick in ticker_watch_list:
-            show_chart(tick)
-     
-    print("Done!")   
+    output = run_daily(ticker_watch_list, curDate)
+
+    return output
+
+
+
+    # if(txt_bool=='Y' or txt_bool == 'y'):
+    #     file_name = input("Enter Text File: ")
+    #     with open(file_name) as f:
+    #         watch = f.read().splitlines()
+    #     #watch = open("watchlist.txt", 'r')
+    #     #Lines = watch.readlines()
+    #     for line in watch:
+           
+    #         #line.rstrip()
+    #         if(len(line)>=1):
+    #             res = get_data(line, StartDate, curDate)
+    #             if(res==0):
+    #                 ticker_watch_list.append(line)
+    #         else:
+    #             break
+    # else:
+    #     print("Enter Stocks to Track (Enter 0 to Stop):")
+    #     while True:
+    #         inp = input("Enter Ticker: ")
+    #         if(inp=='0'):
+    #             print("Current watch list: "+ str(ticker_watch_list))
+    #             break
+    #         else:
+    #             res = get_data(inp, StartDate, curDate)
+    #             if(res==0):
+    #                 ticker_watch_list.append(inp)
+
+    # #get_data(ticker_watch_list, StartDate, curDate)
+    # make_data(ticker_watch_list)
+    # print("After running indicators (RWB, Green Dot):")
+
+    # run_daily(ticker_watch_list, curDate)
+    
 
 
     
     
     
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
 
 
