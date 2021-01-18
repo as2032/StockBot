@@ -1,0 +1,2 @@
+# StockBot
+discord stock bot
