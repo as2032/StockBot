@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import stock
+import stock2
 client = commands.Bot(command_prefix="$")
 token = os.getenv("DISCORD_BOT_TOKEN")
 
@@ -27,6 +28,12 @@ async def on_ready() :
 @client.command(name = "$")
 async def stonk(ctx, *args) :
     out = stock.runStonks(args)
+    await ctx.send(out)
+    #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
+@client.command(name = "$")
+async def stonk2(ctx, *args) :
+    out = stock2.runStonks(args)
+
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 
