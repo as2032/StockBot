@@ -23,18 +23,7 @@ async def on_ready() :
 
 
 
-@client.command(name = "")
-async def stonk(ctx, *args) :
-    out = stock.runStonks(args)
-    await ctx.send(out)
-    #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 
-@client.command(name = " ")
-async def stonk(ctx, *args) :
-    out = stock.runStonks(args)
-    await ctx.send(out)
-    #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
-    
 @client.command(name = "$")
 async def stonk(ctx, *args) :
     out = stock.runStonks(args)
