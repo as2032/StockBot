@@ -2,21 +2,14 @@
 # SUP BRO
 import pandas as pd
 import bs4 as bs
-import os
-import pickle
 import requests
 import datetime as dt
 import yfinance as finance
-import pandas_datareader.data as web
 import matplotlib
-import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
-from sklearn.model_selection import train_test_split
 from collections import Counter
-from sklearn import svm, neighbors
-from sklearn.model_selection import cross_validate
-from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+
 
 style.use('ggplot')
 
@@ -107,14 +100,13 @@ import numpy as np
 import yfinance as yf
 import datetime as dt
 import pandas as pd
-from pandas_datareader import data as pdr
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.ticker as mticker
 import datetime as datetime
 import numpy as np
 import mplfinance as mpf
-from IPython.display import Image
+
 
 moving_averages = [4, 10, 30]
 
