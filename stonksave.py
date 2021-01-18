@@ -8,10 +8,13 @@ def saveStonk(watchlist):
     templist = []
     for tick in watchlist:
         if(i == 0):
-            if(tick not in watchlistArray):
+            name = tick
+            if(name not in watchlistArray):
                 watchlistArray[tick] = []
-                name = tick
+                
                 i= i+1
+            if name in watchlistArray:
+                templist.append(tick)
         else:
             templist.append(tick)
 
@@ -54,7 +57,7 @@ def runListd(arg):
 
 def removeList(name):
 
-    watchlistArray[name].remove(watchlistArray[name])
+    del watchlistArray[name]
     out  = "Removed stocks from "+ str(name) + " watchlist"
 
     return out
