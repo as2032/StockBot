@@ -302,6 +302,7 @@ def runStonks(watchlist):
         
         try:
             x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
+            y = x['Adj Close'].rolling(window=4, min_periods=0).mean()
             flag = 1
         except:
             curDate = curDate-dt.timedelta(days = 1)
