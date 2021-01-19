@@ -41,8 +41,8 @@ def runList(name):
         n = i
         break
     wl = watchlistArray.get(n)
-    out = stock.runStonks(wl)
-
+    out1 = stock.runStonks(wl)
+    out = str(n) + str(out1)
     return out
 
 def runListd(arg):
