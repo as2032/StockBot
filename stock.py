@@ -285,12 +285,12 @@ def runStonks(watchlist):
     while True:
         x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
         y = x['Adj Close'][curDate]
-        if(y!=np.nan and y!=0){
+        if(not(y==np.nan) or not (y == 0)):
             break
-        }else{
+        else:
             curDate = curDate-dt.timedelta(days = 1)
-        }
         
+    
         # try:
         #     x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
         #     y = x['Adj Close'].rolling(window=4, min_periods=0).mean()
