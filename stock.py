@@ -119,7 +119,7 @@ def make_data(ticker_watch_list, start_date, end_date):
         try:
             allStockDf[ticker]=web.data.DataReader(ticker, 'yahoo', start_date, end_date)
         except:
-            print(ticker + " is not a Valid Stock Ticker")
+            ticker_watch_list.remove(ticker)
     for stock in ticker_watch_list: 
         # Adding moving averages to the dataframe
         #stock_df = pd.read_csv('stock_csvs/' + stock + '.csv', parse_dates=True, index_col=0)
@@ -211,7 +211,7 @@ def make_data(ticker_watch_list, start_date, end_date):
 
         every_stock[stock] = stock_df
         
-
+    return ticker_watch_list
     #pd.set_option('display.max_columns', 30)
     # Displaying an example of what the finished dataframe will look like for each stock
     #every_stock['TSLA']
@@ -247,11 +247,6 @@ def buy_sell(stock, date):
 # %%
 def run_daily(tickers, date):
     output = []
-    dayno = date.weekday()
-    if(dayno==5):
-        date = date + dt.timedelta(days = -1)
-    if(dayno==6):
-        date = date + dt.timedelta(days = -2)
     output.append("As of Market Close On: " + date.strftime("%B %d, %Y"))
     for ticker in tickers:
         action = buy_sell(ticker, date)
@@ -302,18 +297,23 @@ def runStonks(watchlist):
     curDate = dt.datetime.today().strftime('%Y-%m-%d')
     curDate = dt.datetime.strptime(curDate, '%Y-%m-%d')
     StartDate = curDate - dt.timedelta(days=365)
+    while true:
+        try:
+            x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
+            break
+        except:
+            curDate = curDate-dt.timedelta(days = 1)
+    
+    
     if(datetime.now().strftime("%d/%m/%Y %H:%M:%S")<datetime.now().strftime("%d/%m/%Y 09:30:00")):
         curDate = curDate + dt.timedelta(days = -1)
-   
 
-
-    
     for tick in watchlist:
         ticker_watch_list.append(tick)
     
-    make_data(ticker_watch_list, StartDate, curDate)
+    newtickers = make_data(ticker_watch_list, StartDate, curDate)
 
-    output = run_daily(ticker_watch_list, curDate)
+    output = run_daily(newtickers, curDate)
 
     return output
 
