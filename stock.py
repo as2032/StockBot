@@ -304,8 +304,8 @@ def runStonks(watchlist):
         # if flag == 1:
         #     break
     
-    if(datetime.now().strftime("%d/%m/%Y %H:%M:%S")<datetime.now().strftime("%d/%m/%Y 09:30:00")):
-        curDate = curDate + dt.timedelta(days = -1)
+    # if(datetime.now().strftime("%d/%m/%Y %H:%M:%S")<datetime.now().strftime("%d/%m/%Y 09:30:00")):
+    #     curDate = curDate + dt.timedelta(days = -1)
 
     for tick in watchlist:
         ticker_watch_list.append(tick)
