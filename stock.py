@@ -297,7 +297,7 @@ def runStonks(watchlist):
     curDate = dt.datetime.today().strftime('%Y-%m-%d')
     curDate = dt.datetime.strptime(curDate, '%Y-%m-%d')
     StartDate = curDate - dt.timedelta(days=365)
-    while true:
+    while True:
         try:
             x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
             break
