@@ -10,7 +10,7 @@ token = os.getenv("DISCORD_BOT_TOKEN")
 
 @client.event
 async def on_ready() :
-    await client.change_presence(status = discord.Status.idle, activity = discord.Game("the StOnK market"))
+    await client.change_presence(status = discord.Status.online, activity = discord.Game("the StOnK market"))
     print("I am online")
 
 
@@ -35,7 +35,6 @@ async def stonk(ctx, *args) :
 @client.command(name = "$d")
 async def stonk2(ctx, *args) :
     out = stock2.runStonks(args)
-
     await ctx.send(out)
     #await ctx.send('{} stocks in watchlist: {}'.format(len(args), ', '.join(args)))
 @client.command(name = "$save")
