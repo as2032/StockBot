@@ -190,23 +190,7 @@ def make_data(ticker_watch_list, start_date, end_date):
 
         
 
-        # Making GMI indicator column
-        stock_df['GMI'] = 'G'
-        green_dates = ['2019-02-01', '2019-06-11', '2019-09-05', '2019-10-16']
-        red_dates = ['2019-01-01', '2019-05-10', '2019-08-02', '2019-10-01']
-        green_dates = pd.to_datetime(green_dates)
-        red_dates = pd.to_datetime(red_dates)
-
-        green = False
-        for date in stock_df.index: 
-            if date in green_dates:
-                green = True
-            if date in red_dates:
-                green = False
-            if green: 
-                stock_df['GMI'][date] = 'Green'
-            else:
-                stock_df['GMI'][date] = 'Red'
+       
             
 
         every_stock[stock] = stock_df
@@ -299,15 +283,22 @@ def runStonks(watchlist):
     StartDate = curDate - dt.timedelta(days=365)
     flag = 0
     while True:
-        
-        try:
-            x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
-            y = x['Adj Close'].rolling(window=4, min_periods=0).mean()
-            flag = 1
-        except:
-            curDate = curDate-dt.timedelta(days = 1)
-        if flag == 1:
+        x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
+        y = x['Adj Close'][curDate]
+        if(y!=np.nan and y!=0){
             break
+        }else{
+            curDate = curDate-dt.timedelta(days = 1)
+        }
+        
+        # try:
+        #     x = web.data.DataReader('AAPL', 'yahoo', StartDate, curDate)
+        #     y = x['Adj Close'].rolling(window=4, min_periods=0).mean()
+        #     flag = 1
+        # except:
+        #     c
+        # if flag == 1:
+        #     break
     
     if(datetime.now().strftime("%d/%m/%Y %H:%M:%S")<datetime.now().strftime("%d/%m/%Y 09:30:00")):
         curDate = curDate + dt.timedelta(days = -1)
