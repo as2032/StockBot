@@ -16,9 +16,12 @@ def saveStonk(watchlist):
             else:
                 i = i+1
         else:
-            templist.append(tick)
+            if(tick not in  watchlistArray.get(name)):
+                templist.append(tick)
+            
+                watchlistArray[name].append(tick)
 
-    watchlistArray[name] = templist
+    #watchlistArray[name] = templist
     out = "Added " + str(templist) + " to "+ str(name) +" watchlist."
     return out
 
